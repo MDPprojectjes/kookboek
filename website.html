@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="images/icon2.png">
+<title> Magali's online kookboek</title>
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <ul class="nav-bar-content">
+            <li><a href="website.html">Home</a></li>
+            <li><a href="#recipes">Recipes</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact </a></li>
+            <li><a href="#polls">Polls</a></li>
+            <li>
+              <div class="nav-search-form">
+                <input type="text" id="searchInput" placeholder="Search..."/>
+              </div>
+            </li>
+      </ul>
+    </nav>
+
+</header>
+<div class="title-wrapper">
+    <h1>Magali's recipe book</h1>
+</div>
+<h2> </h2>
+
+<div class="sort-controls">
+    <label for="sort"> Sort by:</label>
+    <select id="sort">
+        <option value="default">Default</option>
+        <option value="time">Time</option>
+        <option value="difficulty">Difficulty</option>
+    </select>
+</div>
+
+<ol class="recipe-grid">
+<li class="recipe-card" data-time="40" data-difficulty="easy">
+    <img src="images/appelcake.webp">
+    <a href="recepten/appelcake.html">Oma's appelcake </a>
+    <div class="emoji-badges"></div>
+</li> 
+
+<li class="recipe-card" data-time="20" data-difficulty="easy">
+    <img src="images/pannenkoeken.jpg">
+    <a href="recepten/pannenkoeken.html">Pannenkoeken</a>
+    <div class="emoji-badges"></div>
+</li>
+
+<li class="recipe-card" data-time="20" data-difficulty="medium">
+    <img src="images/meringues.jpg">
+    <a href="?">Meringues</a>
+    <div class="emoji-badges"></div>
+</li>
+ 
+<li class="recipe-card" data-time="30" data-difficulty="easy">
+    <img src="images/tiramisu.jpg">
+    <a href="?">Tiramisu</a>
+    <div class="emoji-badges"></div>
+</li>  
+
+<li class="recipe-card" data-time="20" data-difficulty="easy">
+    <img src="images/havermout.jpg">    
+    <a href="?">Havermoutkoekjes</a>
+    <div class="emoji-badges"></div>
+</li> 
+ 
+<li class="recipe-card" data-time="40" data-difficulty="hard">
+    <img src="images/zandkoekjes4.jpg">
+    <a href="?">Zandkoekjes</a>
+    <div class="emoji-badges"></div>
+</li>
+
+<li class="recipe-card" data-time="30" data-difficulty="medium">
+    <img src="images/kwarktaart.webp">
+    <a href="?">No bake kwarktaart</a>
+    <div class="emoji-badges"></div>
+</li>   
+ 
+</ol>
+
+<script>
+    const select = document.getElementById('sort');
+    const recipeList = document.querySelector('.recipe-grid');
+  
+    // 🧠 Save the original order at page load
+    const originalOrder = Array.from(recipeList.children);
+  
+    select.addEventListener('change', function () {
+      const cards = Array.from(recipeList.children);
+      let sortedCards = cards;
+  
+      if (this.value === 'time') {
+        sortedCards = cards.sort((a, b) =>
+          parseInt(a.dataset.time) - parseInt(b.dataset.time)
+        );
+      } else if (this.value === 'difficulty') {
+        const levels = { easy: 1, medium: 2, hard: 3 };
+        sortedCards = cards.sort((a, b) =>
+          levels[a.dataset.difficulty] - levels[b.dataset.difficulty]
+        );
+      } else if (this.value === 'default') {
+        sortedCards = originalOrder;
+      }
+  
+      recipeList.innerHTML = '';
+      sortedCards.forEach(card => recipeList.appendChild(card));
+    });
+  </script>
+  <script>
+    const recipeCards = document.querySelectorAll('.recipe-card');
+  
+    recipeCards.forEach(card => {
+      const time = parseInt(card.dataset.time);
+      const difficulty = card.dataset.difficulty;
+  
+      // Generate clock emojis based on time
+      let clockCount = 1;
+      if (time > 30 && time <= 60) {
+        clockCount = 2;
+      } else if (time > 60) {
+        clockCount = 3;
+      }
+  
+      const clockEmoji = '⏱️'.repeat(clockCount);
+  
+      // Generate chef hat emojis based on difficulty
+      const levels = { easy: 1, medium: 2, hard: 3 };
+      const chefEmoji = '👩‍🍳'.repeat(levels[difficulty]);
+  
+      // Add them to the card
+      const badgeContainer = card.querySelector('.emoji-badges');
+      badgeContainer.textContent = `${clockEmoji} ${chefEmoji}`;
+    });
+  </script>
+  
+  <script>
+    let timer;
+    let seconds = 0;
+    let running = false;
+  
+    // 🔔 Load your custom sound
+    const timerSound = new Audio("../sounds/timer-done.mp3");
+    timerSound.volume = 0.5; // Optional: make it softer
+  
+    function updateDisplay() {
+      const minutes = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      document.getElementById('time').textContent = `${minutes}:${secs}`;
+    }
+  
+    function startTimer() {
+      if (!running) {
+        running = true;
+        timer = setInterval(() => {
+          seconds++;
+          updateDisplay();
+  
+          // ⏰ Play sound at 10 minutes (600 seconds)
+          if (seconds === 600) {
+            timerSound.play();
+          }
+  
+          // 🔁 Or play at any time you want (e.g., every 5 minutes)
+          // if (seconds % 300 === 0) timerSound.play();
+        }, 1000);
+      }
+    }
+  
+    function pauseTimer() {
+      clearInterval(timer);
+      running = false;
+    }
+  
+    function resetTimer() {
+      pauseTimer();
+      seconds = 0;
+      updateDisplay();
+    }
+  
+    updateDisplay(); // initialize on page load
+  </script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      const recipes = document.querySelectorAll('.recipe-card');
+  
+      // ✅ 1. Get search term from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchTerm = urlParams.get('search');
+  
+      // ✅ 2. If there's a search term, set input value + filter recipes
+      if (searchTerm && searchInput) {
+        searchInput.value = searchTerm;
+  
+        recipes.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          const match = text.includes(searchTerm.toLowerCase());
+  
+          card.style.display = match ? '' : 'none';
+        });
+      }
+  
+      // ✅ 3. Still allow live typing filter
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          const term = this.value.toLowerCase();
+  
+          recipes.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            card.style.display = text.includes(term) ? '' : 'none';
+          });
+        });
+      }
+    });
+  </script>
+  
+  
+  
+  
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+/* HOOFDPAGINA*/
+body {
+    background-color: #fff8dc; /* soft base */
+    background-image: url('images/bunny_background.png'); /* or bg-dots.png etc */
+    background-repeat: repeat;
+    background-size: 200px; /* smaller = more playful */
+    font-family: 'Outfit', sans-serif;
+  }
+  
+  
+  
+
+/* NAVIGATIEBAR*/
+.navbar {
+    background-color: #ffe4ec;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.nav-bar-content {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+.navbar a {
+    color: palevioletred;
+    font-weight:600;
+    text-decoration: none;
+    font-family: 'Quicksand',sans-serif;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #f82f7d;
+}
+
+.nav-search-form{
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    display:flex;
+}
+
+#searchInput {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid #f4cdd8;
+    background-color: #fffafc;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    color: palevioletred;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: 0.2s ease;
+  }
+  
+  #searchInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #ffeaf2;
+  }
+/* TITELS HOOFDPAGINA*/
+.title-wrapper {
+    text-align: center;
+  }
+  
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    color: #fcddec; /* light pink inside */
+    text-align: center;
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border-radius: 1rem;
+    background-color: #fffafc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  
+    /* 🎨 Soft dark outline */
+    text-shadow:
+      1.5px 1.5px 0 #eebfd1,
+      -1.5px 1.5px 0 #eebfd1,
+      1.5px -1.5px 0 #eebfd1,
+      -1.5px -1.5px 0 #eebfd1;
+  }
+  
+
+h2{
+    color:#4a4949;
+}
+
+/*RECEPTJES OP HOOFDPAGINA*/
+
+.recipe-grid {
+    display: grid;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding:1rem;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 2rem;
+    list-style: none;
+}
+
+.recipe-grid li {
+    text-align: center;
+    background: pink;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.recipe-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+ }
+
+.recipe-grid a {
+    display: block;
+    margin-top: 0.5rem;
+    color: palevioletred;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+.recipe-grid a:hover {
+    color: #f82f7d;
+    text-decoration: underline;
+  }
+
+
+/* SORT CONTROLS*/
+.sort-controls {
+  text-align: right;
+  color: #4a4949;
+  margin-bottom: 1rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.sort-controls select {
+  padding: 0.5rem;
+  font-family: 'Quicksand', sans-serif;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: #fff3f8;
+  color: palevioletred;
+  font-family: 'Quicksand', sans-serif;
+}
+/* EMOJIS*/
+.emoji-badges {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+}
+  
+/*RECEPT PAGINA*/
+.recipe-page {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fffaf4;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+  
+.recipe-page h1 {
+    color: #fbe199;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3rem;
+    text-shadow:
+    1.5px 1.5px 0 #e3ba8e,
+      -1.5px 1.5px 0 #e3ba8e,
+      1.5px -1.5px 0 #e3ba8e,
+      -1.5px -1.5px 0 #e3ba8e;
+    font-family: 'Outfit', sans-serif;
+}
+
+  
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: palevioletred;
+    text-decoration: none;
+}
+  
+.back-link:hover {
+    color: #f82f7d;
+}
+
+.recipe-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin: 2rem 0;
+    flex-wrap: wrap; 
+}
+  
+.recipe-photo {
+    width: 45%;
+    border-radius: 1rem;
+    object-fit: cover;
+    max-width: 400px;
+}
+  
+.recipe-details {
+    flex: 1;
+    min-width: 250px;
+}
+  
+.recipe-details h2 {
+    margin-top: 0;
+    color: palevioletred;
+}
+
+.recipe-details p{
+    white-space: nowrap;
+
+}
+  
+.recipe-notes {
+    background-color: #fff3f8;
+    padding: 1rem 1.5rem;
+    margin-top: 2rem;
+    border-left: 6px solid palevioletred;
+    border-radius: 0.5rem;
+    font-family: 'Quicksand', sans-serif;
+}
+  
+.recipe-notes h2 {
+    margin-top: 0;
+    color: palevioletred;
+    font-size: 1.5rem;
+}
+  
+.recipe-notes p {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1rem;
+    line-height: 1.6;
+    color: #4a4949;
+}
+ /* SIDEBAR TIMER */
+
+.layout{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+
+ }
+.sidebar{
+    flex: 0 0 250px;
+    padding: 1rem;
+    background: #fff3f8;
+    border-radius: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    max-width: 250px;
+    margin-right: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 1rem;
+    height: fit-content;
+}
+  
+.timer{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: palevioletred;
+}
+
+.timer-buttons button{
+    margin: 0.5rem 0.2rem;
+    padding: 0.4rem 1rem;
+    border: none;
+    background-color: palevioletred;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.timer-buttons button:hover {
+    background-color: #f82f7d;
+  }
+  
+/* SIDEBAR algemeen*/
+
+.sidebar-box {
+    background-color: #fffafc;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+  }
+  .sidebar-box h3 {
+    margin-top: 0;
+    color: palevioletred;
+  }
+  
+  .sidebar-box img:hover{
+    transform: scale(1.03);
+  }
