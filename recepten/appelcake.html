@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🍎 Oma’s Appelcake</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../images/icon2.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <!-- 🍓 Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <ul class="nav-bar-content">
+        <li><a href="../website.html">Home</a></li>
+        <li><a href="#recipes">Recipes</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#polls">Polls</a></li>
+        <li>
+          <form class="nav-search-form" action="../website.html" methode="GET">
+            <input type="text" id="searchInput" name="search" placeholder="Search recipes..."/>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 🍰 Layout: Sidebar + Main Content -->
+  <div class="layout">
+
+    <!-- ⏱️ Timer in Sidebar -->
+    <aside class="sidebar">
+      <section class="sidebar-box">
+        <h3>⏱️ Timer</h3>
+        <div class="timer">
+          <label for="minutes">Minutes:</label>
+          <input type="number" id="minutes" min="1" max="240" value="10">
+          <div id="time-display">10:00</div>
+          <div class="timer-buttons">
+            <button onclick="startCountdown()">Start</button>
+            <button onclick="pauseCountdown()">Pause</button>
+            <button onclick="resetCountdown()">Reset</button>
+          </div>
+        </div>
+      </section>
+      <section class="sidebar-box" id="mood-booster">
+        <h3>💖 Mood Booster</h3>
+        <p>Voor goede moed een mooie foto  🥕</p>
+        <img id="bunny-img" src="" alt="Cute bunny" style="width:100%; border-radius: 1rem; margin-top: 0.5rem;">
+        <button onclick="showAnotherBunny()" style="margin-top: 0.5rem;">🐾 See another bunny</button>
+      </section>
+    </aside>
+
+    <!-- 🧁 Main Recipe Content -->
+    <main class="recipe-page">
+      <h1>🍎 Oma’s Appelcake</h1>
+
+      <div class="recipe-layout">
+        <img src="../images/appelcake.webp" class="recipe-photo" alt="Oma’s appelcake">
+
+        <div class="recipe-details">
+          <h2>Ingredients</h2>
+          <ul>
+            <li>4 eieren</li>
+            <li>300g suiker</li>
+            <li>1 zakje vanillesuiker</li>
+            <li>300g boter</li>
+            <li>300g (zelfrijzende) bloem</li>
+            <li>4 à 5 appels</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Instructions</h2>
+      <ol>
+        <li>Verwarm de oven voor op 150°</li>
+        <li>Laat de boter bijna volledig smelten in de micro</li>
+        <li>Splits de eieren</li>
+        <li>Doe de eierdooiers, suiker en vanillesuiker samen in een kom en klop tot het mengsel verbleekt (niet meer fluo oranje maar licht geel)</li>
+        <li>Voeg de zachte boter toe aan het mengsel en mix</li>
+        <li>Doe de bloem bij het mengsel en mix deze rustig door het mengsel</li>
+        <li>Klop de eiwitten in een andere kom tot sneeuw en voeg deze voorzichtig toe aan het mengsel</li>
+        <li>Snijd de appels in blokjes en voeg toe</li>
+        <li>Doe het mengsel in de ingevette vorm en steek hem in de oven voor ongeveer 40 minuten</li>
+      </ol>
+
+      <section class="recipe-notes">
+        <h2>📝 Notes</h2>
+        <p>
+          Als ge dit voor mama maakt doe er dan maar zeker 5 appels in. 
+          <br>Ook kan het zijn dat het langer dan 45 min duurt.
+          <br>Als je het in cupcake vormpjes doet duurt het een pak minder lang
+        </p>
+      </section>
+
+      <a href="../website.html" class="back-link">← Back to Recipes</a>
+    </main>
+
+  </div>
+
+  <!-- ⏲️ Countdown Timer JavaScript -->
+  <script>
+    let countdownTimer;
+    let remainingSeconds = 0;
+    let running = false;
+
+    function updateTimeDisplay() {
+      const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+      const seconds = String(remainingSeconds % 60).padStart(2, '0');
+      document.getElementById('time-display').textContent = `${minutes}:${seconds}`;
+    }
+
+    function startCountdown() {
+      if (running) return;
+
+      const minutesInput = document.getElementById('minutes');
+      if (remainingSeconds === 0) {
+        remainingSeconds = parseInt(minutesInput.value) * 60;
+      }
+
+      running = true;
+      countdownTimer = setInterval(() => {
+        remainingSeconds--;
+        updateTimeDisplay();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(countdownTimer);
+          running = false;
+          alert("⏰ Time's up!");
+        }
+      }, 1000);
+    }
+
+    function pauseCountdown() {
+      clearInterval(countdownTimer);
+      running = false;
+    }
+
+    function resetCountdown() {
+      pauseCountdown();
+      remainingSeconds = parseInt(document.getElementById('minutes').value) * 60;
+      updateTimeDisplay();
+    }
+
+    document.addEventListener("DOMContentLoaded", updateTimeDisplay);
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bunnyImages = [
+      "../bunnies/bun.JPG",
+      "../bunnies/bun1.JPG",
+      "../bunnies/bun3.PNG",
+      "../bunnies/bun4.JPG",
+      "../bunnies/bun5.JPG",
+      "../bunnies/bun6.JPG",
+      "../bunnies/bun7.JPG",
+      "../bunnies/bun8.JPG",
+      "../bunnies/bun9.JPG",
+      "../bunnies/bun10.jpg"
+    ];
+
+    function showAnotherBunny() {
+      const bunnyImg = document.getElementById("bunny-img");
+      const currentSrc = bunnyImg.src;
+      let newSrc;
+
+      do {
+        const randomIndex = Math.floor(Math.random() * bunnyImages.length);
+        newSrc = bunnyImages[randomIndex];
+      } while (bunnyImg.src.includes(newSrc) && bunnyImages.length > 1);
+
+      bunnyImg.src = newSrc;
+    }
+
+    // Show a random bunny on page load
+    showAnotherBunny();
+
+    // Make the function accessible to the button's onclick
+    window.showAnotherBunny = showAnotherBunny;
+  });
+</script>
+
+
+
+</body>
+</html>
