@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>antwerpse handjes</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../images/icon2.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <!-- 🍓 Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <ul class="nav-bar-content">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html">Recipes</a></li>
+        <li><a href="../index.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a href="../polls.html">Polls</a></li>
+        <li>
+          <form class="nav-search-form" action="../index.html" methode="GET">
+            <input type="text" id="searchInput" name="search" placeholder="Search recipes..."/>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 🍰 Layout: Sidebar + Main Content -->
+  <div class="layout">
+
+    <!-- ⏱️ Timer in Sidebar -->
+    <aside class="sidebar">
+      <section class="sidebar-box">
+        <h3>⏱️ Timer</h3>
+        <div class="timer">
+          <label for="minutes">Minutes:</label>
+          <input type="number" id="minutes" min="1" max="240" value="10">
+          <div id="time-display">10:00</div>
+          <div class="timer-buttons">
+            <button onclick="startCountdown()">Start</button>
+            <button onclick="pauseCountdown()">Pause</button>
+            <button onclick="resetCountdown()">Reset</button>
+          </div>
+        </div>
+      </section>
+      <section class="sidebar-box" id="mood-booster">
+        <h3>💖 Mood Booster</h3>
+        <p>Voor goede moed een mooie foto  🥕</p>
+        <img id="bunny-img" src="" alt="Cute bunny" style="width:100%; border-radius: 1rem; margin-top: 0.5rem;">
+        <button onclick="showAnotherBunny()" style="margin-top: 0.5rem;">🐾 See another bunny</button>
+      </section>
+    </aside>
+
+    <!-- 🧁 Main Recipe Content -->
+    <main class="recipe-page">
+      <h1>Antwerpse handjes</h1>
+
+      <div class="recipe-layout">
+        <img src="../images/antwerpse_handjes.png" class="recipe-photo" alt="Antwerpse handjes">
+
+        <div class="recipe-details">
+          <h2>Ingredients</h2>
+          <ul>
+            <li>700g boter (op kamertemperatuur NIET gesmolten)</li>
+            <li>600g suiker</li>
+            <li>1 ei</li>
+            <li>1kg bloem</li>
+            <li>5g zout</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Instructions</h2>
+      <ol>
+        <li>Meng de boter (niet smelten!) met de suiker tot een smeuïge massa.</li>
+        <li>Voeg het ei toe en meng goed door.</li>
+        <li>Voeg het zout toe.</li>
+        <li>Voeg de bloem toe en meng deze rustig onder het beslag.</li>
+        <li>Belangrijk: niet te lang mengen. Hoe korter hoe beter, maar alles moet wel gemengd zijn.</li>
+        <li>Laat het deeg een nacht rusten in de koelkast.</li>
+        <li>De dag erna: verwarm de oven voor op 220°C.</li>
+        <li>Steek vormpjes uit het deeg (liefst in handjesvorm natuurlijk) en bak 10 à 15 minuten tot licht goudbruin.</li>
+      </ol>
+
+      <section class="recipe-notes">
+        <h2>📝 Notes</h2>
+        <p>
+            Laat het deeg écht lang rusten — minstens een nacht. Dat maakt het verschil.  
+            <br>Als je geen handjesvorm hebt: vierkantjes, hartjes... of maak er een echte Magali-klassieker van en bak Antwerpse dino's. 🦖
+          
+        </p>
+      </section>
+
+      <a href="../index.html" class="back-link">← Back to Recipes</a>
+    </main>
+
+  </div>
+
+  <!-- ⏲️ Countdown Timer JavaScript -->
+  <script>
+    let countdownTimer;
+    let remainingSeconds = 0;
+    let running = false;
+
+    function updateTimeDisplay() {
+      const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+      const seconds = String(remainingSeconds % 60).padStart(2, '0');
+      document.getElementById('time-display').textContent = `${minutes}:${seconds}`;
+    }
+
+    function startCountdown() {
+      if (running) return;
+
+      const minutesInput = document.getElementById('minutes');
+      if (remainingSeconds === 0) {
+        remainingSeconds = parseInt(minutesInput.value) * 60;
+      }
+
+      running = true;
+      countdownTimer = setInterval(() => {
+        remainingSeconds--;
+        updateTimeDisplay();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(countdownTimer);
+          running = false;
+          alert("⏰ Time's up!");
+        }
+      }, 1000);
+    }
+
+    function pauseCountdown() {
+      clearInterval(countdownTimer);
+      running = false;
+    }
+
+    function resetCountdown() {
+      pauseCountdown();
+      remainingSeconds = parseInt(document.getElementById('minutes').value) * 60;
+      updateTimeDisplay();
+    }
+
+    document.addEventListener("DOMContentLoaded", updateTimeDisplay);
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bunnyImages = [
+      "../bunnies/bun.JPG",
+      "../bunnies/bun1.JPG",
+      "../bunnies/bun3.PNG",
+      "../bunnies/bun4.JPG",
+      "../bunnies/bun5.JPG",
+      "../bunnies/bun6.JPG",
+      "../bunnies/bun7.JPG",
+      "../bunnies/bun8.JPG",
+      "../bunnies/bun9.JPG",
+      "../bunnies/bun10.jpg"
+    ];
+
+    function showAnotherBunny() {
+      const bunnyImg = document.getElementById("bunny-img");
+      const currentSrc = bunnyImg.src;
+      let newSrc;
+
+      do {
+        const randomIndex = Math.floor(Math.random() * bunnyImages.length);
+        newSrc = bunnyImages[randomIndex];
+      } while (bunnyImg.src.includes(newSrc) && bunnyImages.length > 1);
+
+      bunnyImg.src = newSrc;
+    }
+
+    // Show a random bunny on page load
+    showAnotherBunny();
+
+    // Make the function accessible to the button's onclick
+    window.showAnotherBunny = showAnotherBunny;
+  });
+</script>
+
+
+
+</body>
+</html>
