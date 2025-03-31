@@ -229,46 +229,44 @@
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('searchInput');
       const recipes = document.querySelectorAll('.recipe-card');
+      const spotlightSection = document.querySelector('.spotlight');
   
       // ✅ 1. Get search term from the URL
       const urlParams = new URLSearchParams(window.location.search);
       const searchTerm = urlParams.get('search');
   
-      // ✅ 2. If there's a search term, set input value + filter recipes
+      // ✅ 2. If there's a search term in the URL, set input and filter recipes
       if (searchTerm && searchInput) {
         searchInput.value = searchTerm;
   
         recipes.forEach(card => {
           const text = card.textContent.toLowerCase();
           const match = text.includes(searchTerm.toLowerCase());
-  
           card.style.display = match ? '' : 'none';
         });
+  
+        // ✅ Hide spotlight when arriving from a search
+        if (spotlightSection) {
+          spotlightSection.style.display = 'none';
+        }
       }
   
-      // ✅ 3. Still allow live typing filter
+      // ✅ 3. Live filtering while typing
       if (searchInput) {
         searchInput.addEventListener('input', function () {
-        const term = this.value.toLowerCase();
-        const spotlightSection = document.querySelector('.spotlight');
-
-        let anyMatch = false;
-
-        recipes.forEach(card => {
-          const text = card.textContent.toLowerCase();
-          const match = text.includes(term);
-          card.style.display = match ? '' : 'none';
-          if (match) anyMatch = true;
-         });
-
-  // Hide spotlight if searching
-          if (term.trim() !== '') {
-            spotlightSection.style.display = 'none';
-          } else {
-            spotlightSection.style.display = '';
+          const term = this.value.toLowerCase();
+  
+          recipes.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            const match = text.includes(term);
+            card.style.display = match ? '' : 'none';
+          });
+  
+          // ✅ Show/hide spotlight while typing
+          if (spotlightSection) {
+            spotlightSection.style.display = term.trim() !== '' ? 'none' : '';
           }
         });
-
       }
     });
   </script>
@@ -276,7 +274,9 @@
   
   
   
+  
 
 </body>
 </html>
+
 
