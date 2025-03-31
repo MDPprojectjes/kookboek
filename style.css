@@ -473,8 +473,11 @@ h2{
   width: 100%;
   background: rgba(255, 234, 240, 0.7); /* A light, translucent pastel; adjust as needed */
   padding: 2rem 1rem;
+    transition: opacity 0.3s ease;
 }
-
+.spotlight[style*="display:none"]{
+    opacity: 0;
+}
 .spotlight h2 {
   text-align: center;
   font-family: 'Outfit', sans-serif;
