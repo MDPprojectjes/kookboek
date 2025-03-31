@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Polls jouw mening telt (soms)</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/icon2.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Outfit&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+  <ul class="nav-bar-content">
+    <li><a href="website.html">Home</a></li>
+    <li><a href="website.html#recipes">Recipes</a></li>
+    <li><a href="website.html#about">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="polls.html">Polls</a></li>
+    <li>
+      <form class="nav-search-form" action="website.html" method="GET">
+        <input type="text" id="searchInput" name="search" placeholder="Search... 🍓">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+<section class="polls">
+  <h1>🗳️ Wat wil jij proeven?</h1>
+
+  <div class="poll-box">
+    <form id="poll-form">
+        <p>✨ Welke volgende recept wil je?</p>
+        <label><input type="radio" name="recipe" value="apple pie"> apple crumble pie</label><br>
+        <label><input type="radio" name="recipe" value="cheesecake"> strawberry cheesecake bars</label><br>
+        <label><input type="radio" name="recipe" value="smartie koekjes"> smartie koekjes</label><br>
+        <label><input type="radio" name="recipe" value="hartjes cake"> hartjes cake</label><br><br>
+        <label for="custom"> eigen suggesties?</label><br>
+        <input type="text" id="custom" name="custom" placeholder="typ hier"/> <br><br>
+        <button type="submit">Stem!</button>
+    </form>
+  </div>
+  <div id="poll-result" style="display:none; margin-top: 2rem;"></div>
+</section>
+
+<script>
+  const pollForm = document.getElementById('poll-form');
+  const pollBox = document.querySelector('.poll-box');
+  const resultBox = document.getElementById('poll-result');
+
+  pollForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Clear previous content in result
+    resultBox.innerHTML = "";
+
+    // Find which radio button is checked
+    let selected = "";
+    if (pollForm.recipe.length) {
+      for (let i = 0; i < pollForm.recipe.length; i++) {
+        if (pollForm.recipe[i].checked) {
+          selected = pollForm.recipe[i].value;
+          break;
+        }
+      }
+    } else {
+      // If there's only one radio input, just check that
+      if (pollForm.recipe && pollForm.recipe.checked) {
+        selected = pollForm.recipe.value;
+      }
+    }
+
+    // Get custom suggestion
+    const custom = document.getElementById('custom').value.trim();
+
+    // Final choice is either the radio selection or the custom text
+    let finalChoice = selected;
+    if (!selected && custom) {
+      finalChoice = custom;
+    }
+
+    if (!finalChoice) {
+      // No valid choice => show error, keep poll box visible
+      resultBox.innerHTML = `<p>😅 Je moet iets kiezen of invullen!</p>`;
+      resultBox.style.display = 'block';
+      pollForm.style.display = 'block';
+      pollBox.style.display = 'block'; // keep poll box visible
+    } else {
+      // Valid choice => hide poll box, show thank you message + GIF
+      resultBox.innerHTML = `
+        <img src="images/giphy.gif" alt="Thank you bunny"
+             style="max-width: 200px; margin-bottom: 1rem;"/>
+        <p>🎉 Bedankt voor je stem op <strong>${finalChoice}</strong>!</p>
+      `;
+      resultBox.style.display = 'block';
+      pollForm.style.display = 'none';
+      pollBox.style.display = 'none'; // HIDE the poll box => no white background left
+    }
+  });
+</script>
+
+  
+</body>
+</html>
