@@ -249,12 +249,23 @@
       // ✅ 3. Still allow live typing filter
       if (searchInput) {
         searchInput.addEventListener('input', function () {
-          const term = this.value.toLowerCase();
+            const term = this.value.toLowerCase();
+            const match = text.includes(term);
+
+            let anyMatch = false;
+        
   
           recipes.forEach(card => {
-            const text = card.textContent.toLowerCase();
-            card.style.display = text.includes(term) ? '' : 'none';
+              const text = card.textContent.toLowerCase();
+              const match= text.includes(term);
+              card.style.display = text.includes(term) ? '' : 'none';
+              if (match) anyMatch = true; 
           });
+           if (term.trim() !== ''){
+               spotlightSection.style.display = 'none';
+           } else {
+               spotlightSection.style.display='';
+           }
         });
       }
     });
