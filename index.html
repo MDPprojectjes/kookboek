@@ -9,14 +9,15 @@
 </head>
 
 <body>
+<!--navbar-->
 <header>
     <nav class="navbar">
         <ul class="nav-bar-content">
             <li><a href="index.html">Home</a></li>
             <li><a href="#recipes">Recipes</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact </a></li>
-            <li><a href="#polls">Polls</a></li>
+            <li><a href="contact.html">Contact </a></li>
+            <li><a href="polls.html">Polls</a></li>
             <li>
               <div class="nav-search-form">
                 <input type="text" id="searchInput" placeholder="Search..."/>
@@ -29,7 +30,21 @@
 <div class="title-wrapper">
     <h1>Magali's recipe book</h1>
 </div>
-<h2> </h2>
+
+<!--SPOTLIGHT-->
+
+<section class="spotlight">
+  <h2>Recipe in the spotlight</h2>
+  <article class="spotlight-recipe">
+    <img src="images/antwerpse_handjes.png" alt="Spotlight Recipe">
+    <div class="spotlight-text">
+      <h3>antwerpse handjes</h3>
+      <p> Jaja het echte traditionele recept </p>
+      <a href="recepten/antwerpse_handjes.html" class="btn">Bekijk het recept</a>
+    </div>
+  </article>
+</section>
+
 
 <div class="sort-controls">
     <label for="sort"> Sort by:</label>
@@ -40,50 +55,73 @@
     </select>
 </div>
 
-<ol class="recipe-grid">
-<li class="recipe-card" data-time="40" data-difficulty="easy">
-    <img src="images/appelcake.webp">
-    <a href="recepten/appelcake.html">Oma's appelcake </a>
+<section class="other-recipes" id="recipes">
+  <ol class="recipe-grid">
+  <li class="recipe-card" data-time="40" data-difficulty="easy">
+      <img src="images/appelcake.webp">
+      <a href="recepten/appelcake.html">Oma's appelcake </a>
+      <div class="emoji-badges"></div>
+  </li> 
+
+  <li class="recipe-card" data-time="20" data-difficulty="easy">
+      <img src="images/pannenkoeken.jpg">
+      <a href="recepten/pannenkoeken.html">Pannenkoeken</a>
+      <div class="emoji-badges"></div>
+  </li>
+
+  <li class="recipe-card" data-time="20" data-difficulty="medium">
+      <img src="images/meringues.jpg">
+      <a href="?">Meringues</a>
+      <div class="emoji-badges"></div>
+  </li>
+ 
+  <li class="recipe-card" data-time="30" data-difficulty="easy">
+      <img src="images/tiramisu.jpg">
+      <a href="?">Tiramisu</a>
+      <div class="emoji-badges"></div>
+  </li>  
+
+  <li class="recipe-card" data-time="20" data-difficulty="easy">
+      <img src="images/havermout.jpg">    
+      <a href="?">Havermoutkoekjes</a>
+      <div class="emoji-badges"></div>
+  </li> 
+ 
+  <li class="recipe-card" data-time="40" data-difficulty="hard">
+      <img src="images/zandkoekjes4.jpg">
+      <a href="?">Zandkoekjes</a>
+      <div class="emoji-badges"></div>
+  </li>
+
+  <li class="recipe-card" data-time="30" data-difficulty="medium">
+      <img src="images/kwarktaart.webp">
+      <a href="?">No bake kwarktaart</a>
+      <div class="emoji-badges"></div>
+  </li>   
+  <li class="recipe-card" data-time="30" data-difficulty="medium">
+    <img src="images/antwerpse_handjes.png">
+    <a href="recepten/antwerpse_handjes.html">Anwterpse handjes</a>
     <div class="emoji-badges"></div>
 </li> 
-
-<li class="recipe-card" data-time="20" data-difficulty="easy">
-    <img src="images/pannenkoeken.jpg">
-    <a href="recepten/pannenkoeken.html">Pannenkoeken</a>
-    <div class="emoji-badges"></div>
-</li>
-
-<li class="recipe-card" data-time="20" data-difficulty="medium">
-    <img src="images/meringues.jpg">
-    <a href="?">Meringues</a>
-    <div class="emoji-badges"></div>
-</li>
  
-<li class="recipe-card" data-time="30" data-difficulty="easy">
-    <img src="images/tiramisu.jpg">
-    <a href="?">Tiramisu</a>
-    <div class="emoji-badges"></div>
-</li>  
+  </ol>
+</section>
 
-<li class="recipe-card" data-time="20" data-difficulty="easy">
-    <img src="images/havermout.jpg">    
-    <a href="?">Havermoutkoekjes</a>
-    <div class="emoji-badges"></div>
-</li> 
- 
-<li class="recipe-card" data-time="40" data-difficulty="hard">
-    <img src="images/zandkoekjes4.jpg">
-    <a href="?">Zandkoekjes</a>
-    <div class="emoji-badges"></div>
-</li>
 
-<li class="recipe-card" data-time="30" data-difficulty="medium">
-    <img src="images/kwarktaart.webp">
-    <a href="?">No bake kwarktaart</a>
-    <div class="emoji-badges"></div>
-</li>   
- 
-</ol>
+<section class="about" id="about">
+  <h2>Voor de echte fans </h2>
+  <div class="about-content">
+    <div class="about-text">
+      <p>Omdat ik het beu was dat ik altijd alles moet maken (stiekem vind ik dit mega tof), is hier jullie handleiding. Geen excuses meer. Jullie kunnen het ook.</p>
+      
+      <p>En ja, ik weet dat er hier en daar een spelfout in zit. Het is een kookboek. Dus voor de taalpolitie: pak een pannenkoek en kalmeer. 🥞</p>
+      
+      <p>Je vindt hier alles van echte klassiekers (zoals Erna’s iconic pannenkoeken) tot recepten die eigenlijk totaal niet thuishoren in dit boek (sorry ik eet gewoon graag pasta).</p>
+    </div>
+  </div>
+</section>
+
+
 
 <script>
     const select = document.getElementById('sort');
@@ -228,3 +266,4 @@
 
 </body>
 </html>
+
